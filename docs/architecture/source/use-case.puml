@@ -1,0 +1,55 @@
+
+@startuml
+title Use Case Diagram - Roommate Matching Application
+
+left to right direction
+skinparam shadowing false
+skinparam packageStyle rectangle
+
+actor "Student" as Student
+actor "Administrator\n(Optional)" as Admin
+
+rectangle "Roommate Matching Application" {
+
+  usecase "Register" as UC_Register
+  usecase "Sign in / Sign out" as UC_Login
+  usecase "Manage student profile" as UC_Profile
+  usecase "Complete lifestyle\nquestionnaire" as UC_Questionnaire
+  usecase "Set accommodation\npreferences" as UC_Preferences
+  usecase "Search roommate\ncandidates" as UC_Search
+  usecase "Get ML-based roommate\nrecommendations" as UC_Recommend
+  usecase "Apply mandatory\nrestrictions" as UC_Filter
+  usecase "Predict pairwise\ncompatibility" as UC_Predict
+  usecase "View candidate profile" as UC_View
+  usecase "View compatibility\nexplanations" as UC_Explain
+  usecase "Manage privacy\nsettings" as UC_Privacy
+
+  usecase "Contact potential\nroommate (Should Have)" as UC_Chat
+  usecase "Report or block user\n(Could Have)" as UC_Report
+  usecase "Review reported users\n(Could Have)" as UC_Moderate
+}
+
+Student --> UC_Register
+Student --> UC_Login
+Student --> UC_Profile
+Student --> UC_Questionnaire
+Student --> UC_Preferences
+Student --> UC_Search
+Student --> UC_Recommend
+Student --> UC_View
+Student --> UC_Explain
+Student --> UC_Privacy
+Student --> UC_Chat
+Student --> UC_Report
+
+Admin --> UC_Moderate
+
+UC_Recommend ..> UC_Filter : <<include>>
+UC_Recommend ..> UC_Predict : <<include>>
+
+note bottom of UC_Predict
+  Requires a trained supervised
+  Machine Learning model.
+end note
+
+@enduml

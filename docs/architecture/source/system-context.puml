@@ -1,0 +1,26 @@
+
+@startuml
+title System Context Diagram - Roommate Matching Application
+
+left to right direction
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor "University Student\n(Searching for a roommate)" as Student
+actor "University Student\n(Potential roommate)" as Candidate
+actor "Administrator\n(Optional role)" as Admin
+
+rectangle "Roommate Matching Application\nMobile App + Backend + ML" as System {
+}
+
+Student --> System : Register and sign in\nComplete lifestyle questionnaire\nSearch and review recommendations
+Candidate --> System : Create profile\nProvide lifestyle preferences\nReview potential matches
+Admin --> System : Moderate reported content\n(Future functionality)
+
+note bottom of System
+  System under development.
+  The application recommends candidates;
+  it does not assign accommodation.
+end note
+
+@enduml
